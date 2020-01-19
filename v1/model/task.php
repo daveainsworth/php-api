@@ -86,7 +86,7 @@ class Task {
     }
 
 
-    //helper method to help format the output
+    //helper method to help format the output based upon adding properties into an array.
     public function returnTaskAsArray() {
         $task = array();
         $task['id'] = $this->getID();
