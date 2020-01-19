@@ -37,3 +37,14 @@ localhost/php-api/v1/tasks/complete
 
 -- get all tasks:
 localhost/php-api/v1/tasks
+
+-- POST a new task:
+
+localhost/php-api/v1/tasks  -- select POST, then Body, ensure JSON data is selected, then add:
+
+{
+	"title":"New title for post test",
+	"description":"this is the description",
+    "completed":"N",
+    "deadline":"19/01/2020 20:26"
+}

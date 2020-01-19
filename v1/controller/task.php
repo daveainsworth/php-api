@@ -458,18 +458,22 @@ elseif(empty($_GET)) {
             $deadline       = $newTask->getDeadline();
             $completed      = $newTask->getCompleted();
 
+            
+
             // *** Insert new task into database based upon variables:
-            $query = $writeDB->prepare('INSERT INTO tbltasks (title, description, deadline, completed)
-                                        VALUES (:title, :description, STR_TO_DATE(deadline, \'$d/$m/%Y %H:%i\'), :completed)');
+            $query = $writeDB->prepare('INSERT INTO tbltasks (title, description, deadline, completed) VALUES (:title, :description, STR_TO_DATE(:deadline, \'%d/%m/%Y %H:%i\'), :completed)');
             
             $query->bindParam(':title', $title, PDO::PARAM_STR);
             $query->bindParam(':description', $description, PDO::PARAM_STR);
             $query->bindParam(':deadline', $deadline, PDO::PARAM_STR);
             $query->bindParam(':completed', $completed, PDO::PARAM_STR);
+            $query->execute();
+
+            
 
             // ** obtain a count of rows affected by query
             $rowCount = $query->rowCount();
-
+            
             // *** Create error response if 0 records inserted:
             if($rowCount === 0) {
                 $response = new Response();
@@ -486,11 +490,12 @@ elseif(empty($_GET)) {
             $lastTaskID = $writeDB->lastInsertId();
 
             // *** query to select task from the last id variable
-            $query = $writeDB->prepare('SELECT id, title, description, DATE_FORMAT(deadline, "%d/%m/%Y %H:%i) as deadline, completed FROM tbltasks where id = :taskID');
+            $query = $writeDB->prepare('SELECT id, title, description, DATE_FORMAT(deadline, "%d/%m/%Y %H:%i") as deadline, completed FROM tbltasks where id = :taskID');
             $query->bindParam(':taskID' , $lastTaskID, PDO::PARAM_INT);
             $query->execute();
 
-            $rowCount = $writeDB->rowCount();
+            $rowCount = $query->rowCount();
+
             // *** Create error response if 0 records returned:
             if($rowCount === 0) {
                 $response = new Response();
