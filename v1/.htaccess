@@ -9,3 +9,5 @@ rewriteRule ^tasks/page/([0-9]+)$ controller/task.php?page=$1 [L]
 rewriteRule ^tasks/complete$ controller/task.php?completed=Y [L]
 rewriteRule ^tasks/incomplete$ controller/task.php?completed=N [L]
 rewriteRule ^tasks$ controller/task.php [L]
+
+rewriteRule ^users$ controller/users.php [L]
