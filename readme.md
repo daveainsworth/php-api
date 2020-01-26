@@ -48,3 +48,34 @@ localhost/php-api/v1/tasks  -- select POST, then Body, ensure JSON data is selec
     "completed":"N",
     "deadline":"19/01/2020 20:26"
 }
+
+// *** Users ***
+To Create a new User:
+
+localhost/php-api/v1/users -- select Post then body ensure JSON data is selected:
+
+Structure for JSON request:
+{
+    "fullname":"First Last name",
+    "username":"enter username",
+    "password":"enter a password"
+}
+
+// *** Sessions ***
+The following api endpoints are available for the Session endpoint:
+
+/sesssions (POST) - to create a new session or log in.
+
+/sesssions/3 (DELETE) - to log out a session/user using the id (3)
+add into Header:
+
+Authorization -- Access token
+
+/sessions/3 (PATCH) - to refresh a session access token
+add into Header:
+
+Authorization -- access token
+body:
+{
+	"refresh_token":"OGY5MmYyODk5OGI3ZDEyY2Q5MDVjMzI4MjA5ZmY1YWU3ZjQ5NDJlNmI3ZGIwYmFl1580056756"
+}

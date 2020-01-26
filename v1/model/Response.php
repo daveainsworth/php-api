@@ -66,7 +66,17 @@ class Response
             $this->_responseData['data']        = $this->_data;
         }
 
+        // return JSON encoded data 
         echo json_encode($this->_responseData);
 
+    }
+
+    public function createdResponse($code, $status, $message){
+        $response = New Reponse();
+        $response->setHttpStatusCode($code);
+        $response->setSuccess($status);
+        $response->addMessage($message);
+        $response->send();
+        exit;
     }
 }

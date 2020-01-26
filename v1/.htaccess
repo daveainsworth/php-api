@@ -1,4 +1,6 @@
 php_flag display_errors on
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+CGIPassAuth On
 
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -9,3 +11,8 @@ rewriteRule ^tasks/page/([0-9]+)$ controller/task.php?page=$1 [L]
 rewriteRule ^tasks/complete$ controller/task.php?completed=Y [L]
 rewriteRule ^tasks/incomplete$ controller/task.php?completed=N [L]
 rewriteRule ^tasks$ controller/task.php [L]
+
+rewriteRule ^users$ controller/users.php [L]
+
+RewriteRule ^sessions/([0-9]+)$ controller/sessions.php?sessionid=$1 [L]
+rewriteRule ^sessions$ controller/sessions.php [L]
