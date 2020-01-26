@@ -67,5 +67,15 @@ The following api endpoints are available for the Session endpoint:
 /sesssions (POST) - to create a new session or log in.
 
 /sesssions/3 (DELETE) - to log out a session/user using the id (3)
+add into Header:
+
+Authorization -- Access token
 
 /sessions/3 (PATCH) - to refresh a session access token
+add into Header:
+
+Authorization -- access token
+body:
+{
+	"refresh_token":"OGY5MmYyODk5OGI3ZDEyY2Q5MDVjMzI4MjA5ZmY1YWU3ZjQ5NDJlNmI3ZGIwYmFl1580056756"
+}
